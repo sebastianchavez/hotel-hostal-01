@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hostal Casa del Sol · Hospedaje cálido en el corazón de la ciudad</title>
+  <meta name="description" content="Hostal boutique con habitaciones privadas y compartidas. Desayuno buffet, Wi-Fi, atención 24/7 y la mejor ubicación para conocer la ciudad." />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#8b5e34',
+            'primary-light': '#c08552',
+            'primary-dark': '#6b4423',
+            secondary: '#3d5f3d',
+            'secondary-light': '#6b8e4e',
+            accent: '#d4a574',
+            'background-light': '#faf6f1',
+            'background-cream': '#f3ead9',
+            'background-soft': '#ede0ce',
+            'background-dark': '#2c1f15',
+            'background-card': '#ffffff',
+            muted: '#6b5d4f',
+            border: '#e0d2bd'
+          },
+          fontFamily: {
+            display: ['Playfair Display', 'serif'],
+            sans: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="index" class="bg-background-light text-gray-800 font-sans">
+
+  <div id="appHeader"></div>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="relative min-h-[92vh] flex items-center gradient-overlay hero-fallback" style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920&q=85&auto=format&fit=crop'); background-size: cover; background-position: center; background-color: #2c1f15;">
+      <div class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div class="max-w-3xl">
+          <p class="text-accent uppercase tracking-[0.3em] text-sm mb-4 font-semibold flex items-center gap-2">
+            <span class="pulse-dot"></span> Hospedaje cálido y auténtico
+          </p>
+          <h1 class="text-5xl md:text-7xl lg:text-8xl font-black text-white leading-[1.05] mb-6 font-display">
+            Tu refugio en<br/><span class="italic text-accent">Casa del Sol</span>
+          </h1>
+          <p class="text-lg md:text-xl text-gray-100 max-w-2xl mb-10 leading-relaxed">
+            Un hostal boutique con habitaciones privadas y dormitorios compartidos. Atención personalizada, ambiente familiar y la mejor energía para descansar después de explorar la ciudad.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="reserva.html" class="btn-primary text-base px-6 py-3.5">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              Reservar ahora
+            </a>
+            <a href="#habitaciones" class="btn-outline text-base px-6 py-3.5 bg-white/10 border-white text-white hover:bg-white hover:text-primary backdrop-blur-sm">Ver habitaciones</a>
+          </div>
+          <div class="mt-12 flex flex-wrap items-center gap-6 text-sm text-gray-200">
+            <div class="flex items-center gap-2"><svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Cancelación flexible</div>
+            <div class="flex items-center gap-2"><svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg> Reserva segura</div>
+            <div class="flex items-center gap-2"><svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg> Confirmación inmediata</div>
+          </div>
+        </div>
+      </div>
+      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
+        <svg class="w-7 h-7 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+      </div>
+    </section>
+
+    <!-- BUSCADOR RÁPIDO -->
+    <section class="container mx-auto px-4 sm:px-6 lg:px-8 -mt-12 relative z-20">
+      <div class="card p-6 md:p-8 bg-white">
+        <form id="quickSearch" class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
+          <div>
+            <label class="block text-sm font-semibold text-muted mb-2">Entrada</label>
+            <input type="date" id="qsEntrada" required class="input-field"/>
+          </div>
+          <div>
+            <label class="block text-sm font-semibold text-muted mb-2">Salida</label>
+            <input type="date" id="qsSalida" required class="input-field"/>
+          </div>
+          <div>
+            <label class="block text-sm font-semibold text-muted mb-2">Huéspedes</label>
+            <select id="qsHuespedes" class="input-field">
+              <option value="1">1 huésped</option>
+              <option value="2" selected>2 huéspedes</option>
+              <option value="3">3 huéspedes</option>
+              <option value="4">4 huéspedes</option>
+              <option value="5+">5+ huéspedes</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-primary py-3.5">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            Buscar
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- HABITACIONES -->
+    <section id="habitaciones" class="py-20">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <p class="text-primary uppercase tracking-[0.3em] text-xs mb-3 font-semibold">Nuestras opciones</p>
+          <h2 class="text-4xl md:text-5xl font-bold text-primary-dark font-display">Encuentra tu habitación ideal</h2>
+          <p class="text-muted mt-3 max-w-2xl mx-auto">Desde dormitorios compartidos cómodos hasta suites privadas con balcón, tenemos el lugar perfecto para tu estadía.</p>
+        </div>
+        <div id="habitacionesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+        <div class="text-center mt-12">
+          <a href="precios.html" class="btn-outline">Ver todas las tarifas</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE NOSOTROS -->
+    <section class="py-20 bg-background-cream">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div>
+            <p class="text-primary uppercase tracking-[0.3em] text-xs mb-3 font-semibold">Sobre nosotros</p>
+            <h2 class="text-4xl md:text-5xl font-bold text-primary-dark font-display mb-6">Más que un hostal, un hogar</h2>
+            <p class="text-muted leading-relaxed mb-6">En <span class="text-primary font-semibold">Casa del Sol</span> creemos que viajar es vivir. Por eso ofrecemos un espacio donde los viajeros de todo el mundo se sienten bienvenidos, cómodos y libres para descubrir la ciudad a su propio ritmo.</p>
+            <p class="text-muted leading-relaxed mb-8">Desde 2018 recibimos a mochileros, parejas y familias en un ambiente cálido, con atención 24/7, espacios comunes pensados para compartir y una ubicación privilegiada en el corazón de la ciudad.</p>
+            <div class="grid grid-cols-3 gap-6">
+              <div>
+                <p class="text-3xl md:text-4xl font-bold text-primary font-display">7+</p>
+                <p class="text-xs uppercase tracking-wider text-muted mt-1">Años</p>
+              </div>
+              <div>
+                <p class="text-3xl md:text-4xl font-bold text-primary font-display">15K+</p>
+                <p class="text-xs uppercase tracking-wider text-muted mt-1">Huéspedes</p>
+              </div>
+              <div>
+                <p class="text-3xl md:text-4xl font-bold text-primary font-display">4.9</p>
+                <p class="text-xs uppercase tracking-wider text-muted mt-1">★ Promedio</p>
+              </div>
+            </div>
+          </div>
+          <div class="relative">
+            <div class="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
+              <img src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=900&q=85&auto=format&fit=crop" alt="Interior del hostal" class="w-full h-full object-cover"/>
+            </div>
+            <div class="absolute -bottom-6 -left-6 bg-white border-2 border-accent rounded-xl p-6 shadow-2xl max-w-[220px]">
+              <p class="text-primary text-3xl font-bold font-display">★ 4.9 / 5</p>
+              <p class="text-muted text-sm mt-1">Calificación promedio en Booking y TripAdvisor</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICIOS DESTACADOS -->
+    <section class="py-20">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <p class="text-primary uppercase tracking-[0.3em] text-xs mb-3 font-semibold">Pensado para ti</p>
+          <h2 class="text-4xl md:text-5xl font-bold text-primary-dark font-display">Servicios que hacen la diferencia</h2>
+        </div>
+        <div id="serviciosDestacados" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+        <div class="text-center mt-12">
+          <a href="servicios.html" class="btn-outline">Ver todos los servicios</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIOS -->
+    <section class="py-20 bg-background-soft">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <p class="text-primary uppercase tracking-[0.3em] text-xs mb-3 font-semibold">Huéspedes felices</p>
+          <h2 class="text-4xl md:text-5xl font-bold text-primary-dark font-display">Lo que dicen nuestros viajeros</h2>
+        </div>
+        <div id="testimoniosGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+      </div>
+    </section>
+
+    <!-- GALERIA PREVIEW -->
+    <section class="py-20">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <p class="text-primary uppercase tracking-[0.3em] text-xs mb-3 font-semibold">Conoce nuestro espacio</p>
+          <h2 class="text-4xl md:text-5xl font-bold text-primary-dark font-display">Galería</h2>
+        </div>
+        <div id="galeriaPreview" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
+        <div class="text-center mt-10">
+          <a href="galeria.html" class="btn-outline">Ver galería completa</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-20 bg-background-cream">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+        <div class="text-center mb-12">
+          <p class="text-primary uppercase tracking-[0.3em] text-xs mb-3 font-semibold">Resolvemos tus dudas</p>
+          <h2 class="text-4xl md:text-5xl font-bold text-primary-dark font-display">Preguntas frecuentes</h2>
+        </div>
+        <div id="faqAccordion" class="space-y-3"></div>
+      </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="py-20 relative overflow-hidden">
+      <div class="absolute inset-0 bg-primary-dark"></div>
+      <div class="absolute inset-0 opacity-25" style="background-image: url('https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=1600&q=80'); background-size: cover; background-position: center;"></div>
+      <div class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+        <h2 class="text-4xl md:text-5xl font-bold font-display mb-4 text-balance">¿Listo para tu próxima aventura?</h2>
+        <p class="text-lg text-gray-100 max-w-2xl mx-auto mb-8">Reserva ahora y asegura tu lugar en Casa del Sol. Cancelación flexible hasta 48 horas antes.</p>
+        <a href="reserva.html" class="btn-primary text-base px-8 py-4 bg-accent hover:bg-accent/90 text-primary-dark">Reservar mi habitación</a>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="appFooter"></div>
+
+  <script src="main.js"></script>
+  <script>
+    function initIndex() {
+      const today = UI.todayISO();
+      const $entrada = document.getElementById('qsEntrada');
+      const $salida = document.getElementById('qsSalida');
+      $entrada.min = today; $entrada.value = UI.addDaysISO(1);
+      $salida.min = UI.addDaysISO(2); $salida.value = UI.addDaysISO(3);
+
+      document.getElementById('quickSearch').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const draft = {
+          fechaEntrada: $entrada.value,
+          fechaSalida: $salida.value,
+          huespedes: parseInt($('#qsHuespedes').value) || 1
+        };
+        setDraftReserva(draft);
+        window.location.href = 'reserva.html';
+      });
+
+      const destacadas = HABITACIONES.slice(0, 4);
+      document.getElementById('habitacionesGrid').innerHTML = destacadas.map(h => `
+        <article class="card-habitacion">
+          <div class="aspect-[4/3] overflow-hidden">
+            <img src="${h.imagen}" alt="${h.nombre}" class="w-full h-full object-cover transition duration-500 hover:scale-110"/>
+          </div>
+          <div class="p-5">
+            <span class="text-xs uppercase tracking-wider text-muted">${h.tipo === 'privada' ? 'Habitación privada' : 'Dormitorio compartido'}</span>
+            <h3 class="font-display text-xl font-bold text-primary-dark mt-1">${h.nombre}</h3>
+            <p class="text-sm text-muted mt-2 line-clamp-2">${h.descripcion}</p>
+            <div class="flex items-center justify-between mt-4 pt-4 border-t border-soft">
+              <span class="text-sm text-muted">Hasta ${h.capacidad} ${h.capacidad === 1 ? 'persona' : 'personas'}</span>
+              <span class="font-bold text-primary">${UI.formatCurrency(h.precio)}<span class="text-xs font-normal text-muted">/noche</span></span>
+            </div>
+          </div>
+        </article>
+      `).join('');
+
+      const iconosServicios = {
+        coffee:  '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8h14a3 3 0 013 3v2a3 3 0 01-3 3H3V8zm14 0V6a2 2 0 00-2-2H5v4M6 20h12M9 16v4M15 16v4"/>',
+        plane:   '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>',
+        wash:    '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h18M5 7v12a2 2 0 002 2h10a2 2 0 002-2V7M9 11h6"/>',
+        suitcase:'<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6m18 0v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6m18 0H3m9-6V3m0 0h-2m2 0h2"/>',
+        map:     '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.447-.894L15 4m0 13V4m0 0L9 7"/>',
+        bike:    '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5h2m-2 0a2 2 0 11-4 0 2 2 0 014 0zM5 11l4-1 2 4-3 1-3-4zm14 0l-4-1-2 4 3 1 3-4zM7 19a2 2 0 11-4 0 2 2 0 014 0zm14 0a2 2 0 11-4 0 2 2 0 014 0z"/>'
+      };
+      document.getElementById('serviciosDestacados').innerHTML = SERVICIOS_EXTRA.slice(0, 4).map(s => `
+        <div class="card p-6 text-center card-hover">
+          <div class="w-14 h-14 mx-auto rounded-full bg-background-soft flex items-center justify-center mb-4">
+            <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">${iconosServicios[s.icono]}</svg>
+          </div>
+          <h3 class="font-display text-lg font-bold text-primary-dark">${s.nombre}</h3>
+          <p class="text-sm text-muted mt-2">${s.descripcion}</p>
+          ${s.precio > 0 ? `<p class="text-primary font-bold mt-3">${UI.formatCurrency(s.precio)}</p>` : ''}
+        </div>
+      `).join('');
+
+      const slides = [TESTIMONIOS[0], TESTIMONIOS[1], TESTIMONIOS[2], TESTIMONIOS[3]];
+      document.getElementById('testimoniosGrid').innerHTML = slides.map(t => `
+        <div class="card p-6 flex flex-col">
+          <div class="flex text-accent mb-3">${'★'.repeat(t.rating).split('').map(() => '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.539 1.118l-2.8-2.034a1 1 0 00-1.176 0l-2.8 2.034c-.783.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z"/></svg>').join('')}</div>
+          <p class="text-sm text-muted flex-1 italic">"${t.texto}"</p>
+          <div class="flex items-center gap-3 mt-5 pt-5 border-t border-soft">
+            <img src="${t.avatar}" alt="${t.nombre}" class="w-11 h-11 rounded-full object-cover"/>
+            <div>
+              <p class="font-semibold text-primary-dark">${t.nombre}</p>
+              <p class="text-xs text-muted">${t.pais}</p>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      const galeriaImgs = [
+        'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80',
+        'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=600&q=80',
+        'https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600&q=80',
+        'https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600&q=80'
+      ];
+      document.getElementById('galeriaPreview').innerHTML = galeriaImgs.map(src => `
+        <div class="gallery-item aspect-square">
+          <img src="${src}" alt="Galería" loading="lazy"/>
+        </div>
+      `).join('');
+
+      document.getElementById('faqAccordion').innerHTML = FAQ_ITEMS.slice(0, 6).map((f, i) => `
+        <details class="card p-5 group" ${i === 0 ? 'open' : ''}>
+          <summary class="flex items-center justify-between cursor-pointer list-none">
+            <span class="font-display text-lg font-semibold text-primary-dark">${f.q}</span>
+            <svg class="w-5 h-5 text-primary transition group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <p class="text-muted mt-3 leading-relaxed">${f.a}</p>
+        </details>
+      `).join('');
+    }
+
+    function $(sel) { return document.querySelector(sel); }
+  </script>
+</body>
+</html>

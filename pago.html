@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pago · Hostal Casa del Sol</title>
+  <meta name="description" content="Realiza el pago de tu reserva de forma segura en Casa del Sol." />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#8b5e34', 'primary-light': '#c08552', 'primary-dark': '#6b4423',
+            secondary: '#3d5f3d', accent: '#d4a574',
+            'background-light': '#faf6f1', 'background-cream': '#f3ead9', 'background-soft': '#ede0ce',
+            'background-dark': '#2c1f15', muted: '#6b5d4f', border: '#e0d2bd'
+          },
+          fontFamily: { display: ['Playfair Display', 'serif'], sans: ['Inter', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="pago" class="bg-background-light text-gray-800 font-sans">
+
+  <div id="appHeader"></div>
+
+  <main class="py-10">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center mb-10">
+        <p class="text-primary uppercase tracking-[0.3em] text-xs mb-2 font-semibold">Pago seguro</p>
+        <h1 class="text-4xl md:text-5xl font-bold text-primary-dark font-display">Finaliza tu pago</h1>
+        <p class="text-muted mt-3">Elige tu método de pago preferido</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+
+        <!-- COLUMNA PRINCIPAL -->
+        <div class="lg:col-span-2">
+
+          <!-- MÉTODOS DE PAGO -->
+          <div class="card p-6 md:p-8 mb-6">
+            <h2 class="font-display text-2xl font-bold text-primary-dark mb-2">💳 Método de pago</h2>
+            <p class="text-muted mb-6 text-sm">Selecciona cómo deseas pagar.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
+              <label class="card p-4 cursor-pointer flex items-center gap-3">
+                <input type="radio" name="metodoPago" value="tarjeta" checked class="checkbox-custom"/>
+                <svg class="w-7 h-7 text-primary" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+                <span class="font-semibold">Tarjeta de crédito/débito</span>
+              </label>
+              <label class="card p-4 cursor-pointer flex items-center gap-3">
+                <input type="radio" name="metodoPago" value="yape" class="checkbox-custom"/>
+                <div class="w-7 h-7 rounded bg-purple-600 text-white flex items-center justify-center text-xs font-bold">Y</div>
+                <span class="font-semibold">Yape</span>
+              </label>
+              <label class="card p-4 cursor-pointer flex items-center gap-3">
+                <input type="radio" name="metodoPago" value="plin" class="checkbox-custom"/>
+                <div class="w-7 h-7 rounded bg-cyan-600 text-white flex items-center justify-center text-xs font-bold">P</div>
+                <span class="font-semibold">Plin</span>
+              </label>
+              <label class="card p-4 cursor-pointer flex items-center gap-3">
+                <input type="radio" name="metodoPago" value="transferencia" class="checkbox-custom"/>
+                <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"/></svg>
+                <span class="font-semibold">Transferencia bancaria</span>
+              </label>
+            </div>
+
+            <!-- FORM: TARJETA -->
+            <form id="formTarjeta" class="space-y-4">
+              <div>
+                <label class="block text-sm font-semibold text-muted mb-2">Nombre del titular *</label>
+                <input type="text" placeholder="Como aparece en la tarjeta" required class="input-field"/>
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-muted mb-2">Número de tarjeta *</label>
+                <input type="text" placeholder="1234 5678 9012 3456" maxlength="19" required class="input-field" id="numTarjeta"/>
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-semibold text-muted mb-2">Vencimiento *</label>
+                  <input type="text" placeholder="MM/AA" maxlength="5" required class="input-field" id="vencimiento"/>
+                </div>
+                <div>
+                  <label class="block text-sm font-semibold text-muted mb-2">CVV *</label>
+                  <input type="text" placeholder="123" maxlength="4" required class="input-field" id="cvv"/>
+                </div>
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-muted mb-2">Cuotas</label>
+                <select class="input-field">
+                  <option>1 cuota sin interés</option>
+                  <option>3 cuotas sin interés</option>
+                  <option>6 cuotas con 5% interés</option>
+                </select>
+              </div>
+            </form>
+
+            <!-- FORM: YAPE / PLIN -->
+            <form id="formYape" class="space-y-4 hidden">
+              <div class="bg-purple-50 border-2 border-purple-200 rounded-lg p-5 text-center">
+                <p class="font-semibold text-purple-900 mb-2">Escanea el QR con tu app Yape</p>
+                <div class="w-48 h-48 mx-auto bg-white rounded-lg flex items-center justify-center border-2 border-purple-300">
+                  <svg class="w-32 h-32 text-purple-600" fill="currentColor" viewBox="0 0 100 100"><path d="M10 10h10v10H10zm15 0h5v10h-5zm-5 5h5v5h-5zm15-5h10v10h-10zm20 0h5v10h-5zm-5 5h10v5h-10zm-10 10h5v10h-5zm15 0h10v10h-10zm20 0h5v10h-5z"/></svg>
+                </div>
+                <p class="text-xs text-purple-700 mt-3">Número: <strong>984 555 888</strong></p>
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-muted mb-2">Tu nombre (titular Yape) *</label>
+                <input type="text" required placeholder="Tu nombre completo" class="input-field"/>
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-muted mb-2">Número de operación *</label>
+                <input type="text" required placeholder="Ej: 123456" class="input-field"/>
+              </div>
+            </form>
+
+            <!-- FORM: TRANSFERENCIA -->
+            <form id="formTransfer" class="space-y-4 hidden">
+              <div class="bg-secondary/10 border border-secondary/30 rounded-lg p-5 text-sm">
+                <p class="font-semibold text-secondary mb-2">Datos para transferencia</p>
+                <ul class="space-y-1 text-muted">
+                  <li><strong>Banco:</strong> BCP</li>
+                  <li><strong>Cuenta Corriente:</strong> 123-45678901-0-12</li>
+                  <li><strong>CCI:</strong> 00212312345678901212</li>
+                  <li><strong>Titular:</strong> Hostal Casa del Sol S.A.C.</li>
+                  <li><strong>RUC:</strong> 20123456789</li>
+                </ul>
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-muted mb-2">Tu nombre (de quien transfiere) *</label>
+                <input type="text" required class="input-field"/>
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-muted mb-2">Número de operación *</label>
+                <input type="text" required class="input-field"/>
+              </div>
+            </form>
+          </div>
+
+          <!-- BOTÓN PAGAR -->
+          <button id="btnPagar" class="btn-primary w-full py-4 text-base">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+            <span id="btnPagarText">Pagar ahora</span>
+          </button>
+
+          <p class="text-xs text-muted text-center mt-4 flex items-center justify-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+            Pago 100% seguro · Tus datos están encriptados
+          </p>
+        </div>
+
+        <!-- RESUMEN STICKY -->
+        <aside class="lg:col-span-1">
+          <div class="card p-6 lg:sticky lg:top-24">
+            <h3 class="font-display text-xl font-bold text-primary-dark mb-4">Resumen</h3>
+            <div id="resumenPago" class="space-y-4"></div>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+  <div id="appFooter"></div>
+
+  <script src="main.js"></script>
+  <script>
+    function initPago() {
+      const id = UI.getURLParam('id');
+      const reserva = id ? Reservas.byId(id) : (getDraftPago() ? Reservas.byId(getDraftPago().reservaId) : null);
+
+      if (!reserva) {
+        document.querySelector('main').innerHTML = `
+          <div class="text-center py-20">
+            <h2 class="text-2xl font-bold text-primary-dark mb-4">No se encontró la reserva para pagar</h2>
+            <a href="index.html" class="btn-primary">Volver al inicio</a>
+          </div>
+        `;
+        return;
+      }
+
+      if (reserva.estado === 'confirmada' || reserva.estado === 'completada') {
+        UI.Toast('Esta reserva ya fue pagada', 'warning');
+        setTimeout(() => window.location.href = 'pago-confirmado.html?id=' + reserva.id, 1000);
+        return;
+      }
+
+      setDraftPago({ reservaId: reserva.id });
+
+      const hab = HABITACIONES.find(h => h.id === reserva.habitacionId);
+      const noches = Reservas.calcularNoches(reserva.fechaEntrada, reserva.fechaSalida);
+
+      document.getElementById('resumenPago').innerHTML = `
+        <img src="${hab.imagen}" alt="${hab.nombre}" class="w-full h-32 object-cover rounded-lg"/>
+        <div>
+          <h4 class="font-display text-lg font-bold text-primary-dark">${hab.nombre}</h4>
+          <p class="text-xs text-muted">${hab.tipo === 'privada' ? 'Habitación privada' : 'Dormitorio compartido'}</p>
+        </div>
+        <div class="divider"></div>
+        <div class="text-sm space-y-2">
+          <div class="flex justify-between"><span class="text-muted">Código</span><span class="font-mono font-semibold text-primary">${reserva.id}</span></div>
+          <div class="flex justify-between"><span class="text-muted">Entrada</span><span>${UI.formatDateShort(reserva.fechaEntrada)}</span></div>
+          <div class="flex justify-between"><span class="text-muted">Salida</span><span>${UI.formatDateShort(reserva.fechaSalida)}</span></div>
+          <div class="flex justify-between"><span class="text-muted">Noches</span><span>${noches}</span></div>
+          <div class="flex justify-between"><span class="text-muted">Tarifa / noche</span><span>${UI.formatCurrency(hab.precio)}</span></div>
+          <div class="flex justify-between"><span class="text-muted">Subtotal</span><span>${UI.formatCurrency(hab.precio * noches)}</span></div>
+          ${reserva.serviciosExtra && reserva.serviciosExtra.length > 0 ? `
+            <div>
+              <p class="text-muted mb-1">Servicios:</p>
+              ${reserva.serviciosExtra.map(sid => {
+                const s = SERVICIOS_EXTRA.find(x => x.id === sid);
+                return s ? `<div class="flex justify-between text-xs ml-2"><span>• ${s.nombre}</span><span>${UI.formatCurrency(s.precio)}</span></div>` : '';
+              }).join('')}
+            </div>
+          ` : ''}
+        </div>
+        <div class="divider"></div>
+        <div class="flex justify-between items-center">
+          <span class="font-display font-bold text-primary-dark">Total a pagar</span>
+          <span class="font-display text-2xl font-bold text-primary">${UI.formatCurrency(reserva.total)}</span>
+        </div>
+      `;
+
+      // Switch entre métodos
+      const $tarjeta = document.getElementById('formTarjeta');
+      const $yape = document.getElementById('formYape');
+      const $transfer = document.getElementById('formTransfer');
+      document.querySelectorAll('input[name="metodoPago"]').forEach(r => {
+        r.addEventListener('change', () => {
+          $tarjeta.classList.add('hidden');
+          $yape.classList.add('hidden');
+          $transfer.classList.add('hidden');
+          if (r.value === 'tarjeta') $tarjeta.classList.remove('hidden');
+          if (r.value === 'yape' || r.value === 'plin') $yape.classList.remove('hidden');
+          if (r.value === 'transferencia') $transfer.classList.remove('hidden');
+        });
+      });
+
+      // Formatear inputs
+      document.getElementById('numTarjeta').addEventListener('input', (e) => {
+        let v = e.target.value.replace(/\s/g, '').replace(/\D/g, '');
+        e.target.value = v.match(/.{1,4}/g)?.join(' ') || '';
+      });
+      document.getElementById('vencimiento').addEventListener('input', (e) => {
+        let v = e.target.value.replace(/\D/g, '');
+        if (v.length >= 2) v = v.slice(0, 2) + '/' + v.slice(2);
+        e.target.value = v;
+      });
+      document.getElementById('cvv').addEventListener('input', (e) => {
+        e.target.value = e.target.value.replace(/\D/g, '');
+      });
+
+      // Procesar pago
+      document.getElementById('btnPagar').addEventListener('click', () => {
+        const metodoRadio = document.querySelector('input[name="metodoPago"]:checked');
+        if (!metodoRadio) return;
+        const metodo = metodoRadio.value;
+
+        const $form = metodo === 'tarjeta' ? $tarjeta : (metodo === 'transferencia' ? $transfer : $yape);
+        if (!$form.checkValidity()) { $form.reportValidity(); return; }
+
+        const $btn = document.getElementById('btnPagar');
+        const $txt = document.getElementById('btnPagarText');
+        $btn.disabled = true;
+        $txt.textContent = 'Procesando pago…';
+
+        setTimeout(() => {
+          const metodosLabel = { tarjeta: 'Tarjeta de crédito', yape: 'Yape', plin: 'Plin', transferencia: 'Transferencia bancaria' };
+          Reservas.confirmarPago(reserva.id, { metodo: metodosLabel[metodo], referencia: 'TX-' + Date.now().toString().slice(-6) });
+          clearDraftPago();
+          window.location.href = 'pago-confirmado.html?id=' + reserva.id;
+        }, 1500);
+      });
+    }
+  </script>
+</body>
+</html>

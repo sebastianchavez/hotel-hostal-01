@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crear cuenta · Hostal Casa del Sol</title>
+  <meta name="description" content="Crea tu cuenta en Casa del Sol para gestionar tus reservas y disfrutar de beneficios exclusivos." />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#8b5e34', 'primary-light': '#c08552', 'primary-dark': '#6b4423',
+            secondary: '#3d5f3d', accent: '#d4a574',
+            'background-light': '#faf6f1', 'background-cream': '#f3ead9', 'background-soft': '#ede0ce',
+            'background-dark': '#2c1f15', muted: '#6b5d4f', border: '#e0d2bd'
+          },
+          fontFamily: { display: ['Playfair Display', 'serif'], sans: ['Inter', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="registro" class="bg-background-light text-gray-800 font-sans">
+
+  <div id="appHeader"></div>
+
+  <main class="min-h-[calc(100vh-80px)] flex items-center py-12">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+
+        <!-- FORMULARIO -->
+        <div class="max-w-md w-full mx-auto order-2 lg:order-1">
+          <div class="text-center mb-8">
+            <p class="text-primary uppercase tracking-[0.3em] text-xs mb-3 font-semibold">Bienvenido a Casa del Sol</p>
+            <h1 class="text-4xl font-bold text-primary-dark font-display">Crea tu cuenta</h1>
+            <p class="text-muted mt-3">Reserva más rápido y obtén beneficios exclusivos</p>
+          </div>
+
+          <form id="registerForm" class="space-y-5">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div>
+                <label class="block text-sm font-semibold text-muted mb-2">Nombre *</label>
+                <input type="text" name="nombre" required placeholder="María" class="input-field"/>
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-muted mb-2">Apellido *</label>
+                <input type="text" name="apellido" required placeholder="Rodríguez" class="input-field"/>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-muted mb-2">Email *</label>
+              <input type="email" name="email" required placeholder="tu@email.com" class="input-field"/>
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-muted mb-2">Teléfono *</label>
+              <input type="tel" name="telefono" required placeholder="+51 999 888 777" class="input-field"/>
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-muted mb-2">Contraseña *</label>
+              <input type="password" name="password" id="regPassword" required minlength="6" placeholder="Mínimo 6 caracteres" class="input-field"/>
+              <p class="text-xs text-muted mt-1">Mínimo 6 caracteres. Usa una combinación segura.</p>
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-muted mb-2">Confirmar contraseña *</label>
+              <input type="password" name="confirmar" required minlength="6" placeholder="Repite tu contraseña" class="input-field"/>
+            </div>
+
+            <div class="flex items-start gap-2">
+              <input type="checkbox" id="terminos" required class="checkbox-custom mt-1"/>
+              <label for="terminos" class="text-sm text-muted">
+                Acepto los <a href="terminos.html" target="_blank" class="text-primary font-medium hover:underline">términos y condiciones</a> y la <a href="privacidad.html" target="_blank" class="text-primary font-medium hover:underline">política de privacidad</a>.
+              </label>
+            </div>
+
+            <div class="flex items-start gap-2">
+              <input type="checkbox" id="newsletter" class="checkbox-custom mt-1"/>
+              <label for="newsletter" class="text-sm text-muted">Quiero recibir ofertas exclusivas y noticias por email.</label>
+            </div>
+
+            <button type="submit" class="btn-primary w-full py-3.5 text-base">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>
+              Crear mi cuenta
+            </button>
+
+            <p class="text-center text-sm text-muted mt-6">
+              ¿Ya tienes cuenta? <a href="inicio-sesion.html" class="text-primary font-semibold hover:underline">Inicia sesión</a>
+            </p>
+          </form>
+        </div>
+
+        <!-- ILUSTRACIÓN -->
+        <div class="hidden lg:block relative order-1 lg:order-2">
+          <div class="aspect-square rounded-3xl overflow-hidden shadow-2xl">
+            <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=900&q=85&auto=format&fit=crop" alt="Únete a Casa del Sol" class="w-full h-full object-cover"/>
+          </div>
+          <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-xl max-w-[280px] border-2 border-accent">
+            <p class="font-display text-lg font-bold text-primary mb-2">Beneficios de registrarte</p>
+            <ul class="text-xs text-muted space-y-1">
+              <li>✓ Reservas más rápidas</li>
+              <li>✓ Ofertas exclusivas para socios</li>
+              <li>✓ Historial y gestión de reservas</li>
+              <li>✓ Acumulación de noches como viajero frecuente</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <div id="appFooter"></div>
+
+  <script src="main.js"></script>
+  <script>
+    function initRegistro() {
+      document.getElementById('registerForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const data = {
+          nombre: `${form.nombre.value.trim()} ${form.apellido.value.trim()}`.trim(),
+          email: form.email.value.trim(),
+          telefono: form.telefono.value.trim(),
+          password: form.password.value,
+          confirmar: form.confirmar.value
+        };
+
+        if (data.password !== data.confirmar) {
+          UI.Toast('Las contraseñas no coinciden', 'error');
+          return;
+        }
+
+        const result = Auth.register(data);
+        if (result.ok) {
+          UI.Toast('¡Cuenta creada con éxito! Bienvenido/a', 'success');
+          setTimeout(() => window.location.href = 'perfil.html', 800);
+        } else {
+          UI.Toast(result.error, 'error');
+        }
+      });
+    }
+  </script>
+</body>
+</html>

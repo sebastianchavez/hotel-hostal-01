@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pago confirmado · Hostal Casa del Sol</title>
+  <meta name="description" content="Tu pago ha sido confirmado exitosamente en Casa del Sol." />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#8b5e34', 'primary-light': '#c08552', 'primary-dark': '#6b4423',
+            secondary: '#3d5f3d', accent: '#d4a574',
+            'background-light': '#faf6f1', 'background-cream': '#f3ead9', 'background-soft': '#ede0ce',
+            'background-dark': '#2c1f15', muted: '#6b5d4f', border: '#e0d2bd'
+          },
+          fontFamily: { display: ['Playfair Display', 'serif'], sans: ['Inter', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="pago-confirmado" class="bg-background-light text-gray-800 font-sans">
+
+  <div id="appHeader"></div>
+
+  <main class="py-12">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
+
+      <!-- CHECKMARK -->
+      <div class="text-center mb-10 fade-in">
+        <div class="checkmark-circle mx-auto mb-6">
+          <div class="background"></div>
+          <div class="checkmark"></div>
+        </div>
+        <p class="text-secondary uppercase tracking-[0.3em] text-xs mb-3 font-semibold">¡Listo!</p>
+        <h1 class="text-4xl md:text-5xl font-bold text-primary-dark font-display">Pago confirmado</h1>
+        <p class="text-muted mt-3 max-w-xl mx-auto">Tu reserva ha sido confirmada exitosamente. Te enviamos un email con todos los detalles.</p>
+      </div>
+
+      <!-- RECIBO -->
+      <div id="recibo" class="card p-8 mb-8"></div>
+
+      <!-- INSTRUCCIONES CHECK-IN -->
+      <div class="card p-6 md:p-8 mb-8">
+        <h3 class="font-display text-xl font-bold text-primary-dark mb-4">🏨 Información para tu llegada</h3>
+        <ul class="space-y-3 text-sm">
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <div><strong class="text-primary-dark">Check-in:</strong> a partir de las 14:00 hrs.</div>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
+            <div><strong class="text-primary-dark">Ubicación:</strong> Av. Sol 245, Cusco, Perú</div>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0"/></svg>
+            <div><strong class="text-primary-dark">Documentos:</strong> presenta tu documento de identidad y código de reserva.</div>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+            <div><strong class="text-primary-dark">Llegada tarde:</strong> avisa con anticipación para mantener tu reserva.</div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- ACCIONES -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <button id="btnImprimir" class="btn-primary text-base px-6 py-3">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+          Imprimir recibo
+        </button>
+        <a href="detalle-reserva.html" id="btnDetalle" class="btn-outline text-base px-6 py-3">Ver mi reserva</a>
+        <a href="index.html" class="btn-ghost text-base px-6 py-3">Volver al inicio</a>
+      </div>
+
+    </div>
+  </main>
+
+  <div id="appFooter"></div>
+
+  <script src="main.js"></script>
+  <script>
+    function initPagoConfirmado() {
+      const id = UI.getURLParam('id');
+      const reserva = id ? Reservas.byId(id) : null;
+
+      if (!reserva) {
+        document.querySelector('main').innerHTML = `
+          <div class="text-center py-20">
+            <h2 class="text-2xl font-bold text-primary-dark mb-4">No se encontró la reserva</h2>
+            <a href="perfil.html" class="btn-primary">Ver mis reservas</a>
+          </div>
+        `;
+        return;
+      }
+
+      document.getElementById('btnDetalle').href = `detalle-reserva.html?id=${reserva.id}`;
+
+      const hab = HABITACIONES.find(h => h.id === reserva.habitacionId);
+      const noches = Reservas.calcularNoches(reserva.fechaEntrada, reserva.fechaSalida);
+      const session = Auth.current();
+      const datosH = reserva.datosHuesped || {};
+
+      document.getElementById('recibo').innerHTML = `
+        <div class="text-center mb-6 pb-6 border-b border-soft">
+          <div class="flex items-center justify-center gap-2 mb-2">
+            <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+              <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z"/></svg>
+            </div>
+            <span class="font-display text-lg font-bold text-primary">Casa del Sol</span>
+          </div>
+          <h3 class="font-display text-2xl font-bold text-primary-dark">Recibo de pago</h3>
+          <p class="text-xs text-muted">Comprobante de pago N° ${reserva.pago?.referencia || 'TX-PENDIENTE'}</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <p class="text-xs text-muted uppercase tracking-wider mb-1">Huésped</p>
+            <p class="font-semibold">${datosH.nombre || session?.nombre || '—'}</p>
+            <p class="text-sm text-muted">${datosH.email || session?.email || ''}</p>
+            ${datosH.documento ? `<p class="text-sm text-muted">Doc: ${datosH.documento}</p>` : ''}
+          </div>
+          <div>
+            <p class="text-xs text-muted uppercase tracking-wider mb-1">Reserva</p>
+            <p class="font-semibold">Código: ${reserva.id}</p>
+            <p class="text-sm text-muted">Reservado: ${new Date(reserva.createdAt).toLocaleDateString('es-PE')}</p>
+            <p class="text-sm text-muted">Pagado: ${reserva.pago?.fechaPago ? UI.formatDate(reserva.pago.fechaPago) : '—'}</p>
+          </div>
+        </div>
+
+        <div class="bg-background-soft rounded-lg p-4 mb-6">
+          <div class="flex gap-4">
+            <img src="${hab.imagen}" alt="${hab.nombre}" class="w-20 h-20 object-cover rounded-lg"/>
+            <div class="flex-1">
+              <p class="text-xs text-muted uppercase tracking-wider">Habitación</p>
+              <p class="font-display font-bold text-primary-dark">${hab.nombre}</p>
+              <p class="text-sm text-muted">${UI.formatDate(reserva.fechaEntrada)} → ${UI.formatDate(reserva.fechaSalida)}</p>
+              <p class="text-sm text-muted">${noches} ${noches === 1 ? 'noche' : 'noches'} · ${reserva.huespedes} ${reserva.huespedes === 1 ? 'huésped' : 'huéspedes'}</p>
+            </div>
+          </div>
+        </div>
+
+        <table class="w-full text-sm">
+          <tbody>
+            <tr class="border-b border-soft">
+              <td class="py-2 text-muted">Habitación (${noches} ${noches === 1 ? 'noche' : 'noches'})</td>
+              <td class="py-2 text-right font-semibold">${UI.formatCurrency(hab.precio * noches)}</td>
+            </tr>
+            ${reserva.serviciosExtra && reserva.serviciosExtra.length > 0 ? reserva.serviciosExtra.map(sid => {
+              const s = SERVICIOS_EXTRA.find(x => x.id === sid);
+              return s ? `<tr class="border-b border-soft"><td class="py-2 text-muted">${s.nombre}</td><td class="py-2 text-right font-semibold">${UI.formatCurrency(s.precio)}</td></tr>` : '';
+            }).join('') : ''}
+            <tr class="border-b border-soft">
+              <td class="py-2 text-muted">IGV incluido (10%)</td>
+              <td class="py-2 text-right font-semibold">${UI.formatCurrency(reserva.total * 0.10 / 1.10)}</td>
+            </tr>
+            <tr>
+              <td class="pt-3 font-display font-bold text-primary-dark text-lg">TOTAL PAGADO</td>
+              <td class="pt-3 text-right font-display text-2xl font-bold text-primary">${UI.formatCurrency(reserva.total)}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="mt-6 pt-6 border-t border-soft text-xs text-muted text-center">
+          <p>Pago realizado vía: <strong>${reserva.pago?.metodo || '—'}</strong></p>
+          <p class="mt-1">Gracias por tu reserva. ¡Te esperamos en Casa del Sol!</p>
+        </div>
+      `;
+
+      document.getElementById('btnImprimir').addEventListener('click', () => window.print());
+    }
+  </script>
+</body>
+</html>

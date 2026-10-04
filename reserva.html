@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reservar · Hostal Casa del Sol</title>
+  <meta name="description" content="Reserva tu habitación o dormitorio en Casa del Sol en simples pasos." />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#8b5e34', 'primary-light': '#c08552', 'primary-dark': '#6b4423',
+            secondary: '#3d5f3d', accent: '#d4a574',
+            'background-light': '#faf6f1', 'background-cream': '#f3ead9', 'background-soft': '#ede0ce',
+            'background-dark': '#2c1f15', muted: '#6b5d4f', border: '#e0d2bd'
+          },
+          fontFamily: { display: ['Playfair Display', 'serif'], sans: ['Inter', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="reserva" class="bg-background-light text-gray-800 font-sans">
+
+  <div id="appHeader"></div>
+
+  <main class="py-10">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center mb-10">
+        <p class="text-primary uppercase tracking-[0.3em] text-xs mb-2 font-semibold">Reserva</p>
+        <h1 class="text-4xl md:text-5xl font-bold text-primary-dark font-display">Reserva tu estadía</h1>
+        <p class="text-muted mt-3">Completa los 4 pasos para confirmar tu reserva</p>
+      </div>
+
+      <!-- WIZARD STEPS -->
+      <div class="max-w-4xl mx-auto mb-10">
+        <div class="flex items-start justify-between">
+          <div class="wizard-step active" data-step="1"><div class="step-circle">1</div><div class="step-label">Fechas</div></div>
+          <div class="wizard-line"></div>
+          <div class="wizard-step" data-step="2"><div class="step-circle">2</div><div class="step-label">Habitación</div></div>
+          <div class="wizard-line"></div>
+          <div class="wizard-step" data-step="3"><div class="step-circle">3</div><div class="step-label">Servicios</div></div>
+          <div class="wizard-line"></div>
+          <div class="wizard-step" data-step="4"><div class="step-circle">4</div><div class="step-label">Confirmar</div></div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <div class="lg:col-span-2">
+
+          <!-- PASO 1: FECHAS Y HUESPEDES -->
+          <section id="step1" class="card p-6 md:p-8 mb-6">
+            <h2 class="font-display text-2xl font-bold text-primary-dark mb-2">📅 Fechas y huéspedes</h2>
+            <p class="text-muted mb-6 text-sm">Selecciona las fechas y la cantidad de huéspedes.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+              <div>
+                <label class="block text-sm font-semibold text-muted mb-2">Entrada *</label>
+                <input type="date" id="rEntrada" required class="input-field"/>
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-muted mb-2">Salida *</label>
+                <input type="date" id="rSalida" required class="input-field"/>
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-muted mb-2">Huéspedes *</label>
+                <select id="rHuespedes" class="input-field">
+                  <option value="1">1 huésped</option>
+                  <option value="2" selected>2 huéspedes</option>
+                  <option value="3">3 huéspedes</option>
+                  <option value="4">4 huéspedes</option>
+                  <option value="5">5 huéspedes</option>
+                  <option value="6">6 huéspedes</option>
+                  <option value="7">7 huéspedes</option>
+                  <option value="8">8 huéspedes</option>
+                </select>
+              </div>
+            </div>
+            <div id="step1Info" class="hidden mt-5 p-4 bg-secondary/10 rounded-lg text-sm">
+              <span id="step1Noches" class="font-semibold text-secondary"></span>
+            </div>
+            <div class="flex justify-end mt-6">
+              <button class="btn-primary" id="toStep2">Siguiente: Elegir habitación →</button>
+            </div>
+          </section>
+
+          <!-- PASO 2: HABITACION -->
+          <section id="step2" class="card p-6 md:p-8 mb-6 hidden">
+            <h2 class="font-display text-2xl font-bold text-primary-dark mb-2">🛏️ Elige tu habitación</h2>
+            <p class="text-muted mb-6 text-sm">Selecciona la habitación o dormitorio que prefieras.</p>
+            <div class="mb-5 flex gap-3">
+              <button class="filtro-hab btn-primary text-sm py-2 px-4" data-filtro="todas">Todas</button>
+              <button class="filtro-hab btn-outline text-sm py-2 px-4" data-filtro="privada">Privadas</button>
+              <button class="filtro-hab btn-outline text-sm py-2 px-4" data-filtro="compartida">Compartidas</button>
+            </div>
+            <div id="habitacionesReserva" class="space-y-4"></div>
+            <div class="flex justify-between mt-6">
+              <button class="btn-ghost" id="backToStep1">← Anterior</button>
+              <button class="btn-primary" id="toStep3">Siguiente: Agregar servicios →</button>
+            </div>
+          </section>
+
+          <!-- PASO 3: SERVICIOS EXTRA -->
+          <section id="step3" class="card p-6 md:p-8 mb-6 hidden">
+            <h2 class="font-display text-2xl font-bold text-primary-dark mb-2">✨ Servicios adicionales</h2>
+            <p class="text-muted mb-6 text-sm">Mejora tu experiencia con estos servicios opcionales.</p>
+            <div id="serviciosExtraReserva" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+            <div class="flex justify-between mt-6">
+              <button class="btn-ghost" id="backToStep2">← Anterior</button>
+              <button class="btn-primary" id="toStep4">Siguiente: Confirmar reserva →</button>
+            </div>
+          </section>
+
+          <!-- PASO 4: CONFIRMAR -->
+          <section id="step4" class="card p-6 md:p-8 mb-6 hidden">
+            <h2 class="font-display text-2xl font-bold text-primary-dark mb-2">✓ Confirma tu reserva</h2>
+            <p class="text-muted mb-6 text-sm">Revisa los datos antes de continuar al pago.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
+              <div>
+                <label class="block text-sm font-semibold text-muted mb-2">Nombre completo *</label>
+                <input type="text" id="dNombre" required class="input-field"/>
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-muted mb-2">Email *</label>
+                <input type="email" id="dEmail" required class="input-field"/>
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-muted mb-2">Teléfono *</label>
+                <input type="tel" id="dTelefono" required class="input-field"/>
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-muted mb-2">Documento (DNI/Pasaporte) *</label>
+                <input type="text" id="dDocumento" required class="input-field"/>
+              </div>
+            </div>
+            <div class="mb-6">
+              <label class="block text-sm font-semibold text-muted mb-2">Notas o peticiones especiales</label>
+              <textarea id="dNotas" rows="3" class="input-field resize-none" placeholder="Ej: llegada tarde, preferencias alimentarias..."></textarea>
+            </div>
+            <div class="flex items-start gap-2">
+              <input type="checkbox" id="dTerminos" required class="checkbox-custom mt-1"/>
+              <label for="dTerminos" class="text-sm text-muted">Acepto los <a href="terminos.html" target="_blank" class="text-primary hover:underline">términos y condiciones</a> y la <a href="privacidad.html" target="_blank" class="text-primary hover:underline">política de privacidad</a>.</label>
+            </div>
+
+            <div class="flex justify-between mt-6">
+              <button class="btn-ghost" id="backToStep3">← Anterior</button>
+              <button class="btn-primary" id="confirmarReserva">Ir a pagar →</button>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- RESUMEN STICKY -->
+        <aside class="lg:col-span-1">
+          <div class="card p-6 lg:sticky lg:top-24">
+            <h3 class="font-display text-xl font-bold text-primary-dark mb-4">Resumen de reserva</h3>
+            <div id="resumenVacio" class="text-muted text-sm py-6 text-center">Completa los pasos para ver el resumen.</div>
+            <div id="resumenContent" class="hidden space-y-3 text-sm">
+              <div class="flex justify-between"><span class="text-muted">Habitación</span><span id="rsHab" class="font-semibold text-right text-primary-dark"></span></div>
+              <div class="flex justify-between"><span class="text-muted">Entrada</span><span id="rsEntrada" class="font-semibold"></span></div>
+              <div class="flex justify-between"><span class="text-muted">Salida</span><span id="rsSalida" class="font-semibold"></span></div>
+              <div class="flex justify-between"><span class="text-muted">Noches</span><span id="rsNoches" class="font-semibold"></span></div>
+              <div class="flex justify-between"><span class="text-muted">Huéspedes</span><span id="rsHuespedes" class="font-semibold"></span></div>
+              <div id="rsServiciosContainer" class="hidden">
+                <div class="text-muted mb-2">Servicios extra:</div>
+                <div id="rsServicios" class="space-y-1.5 ml-2"></div>
+              </div>
+              <div class="divider"></div>
+              <div class="flex justify-between text-lg"><span class="font-display font-bold text-primary-dark">Total</span><span id="rsTotal" class="font-display font-bold text-primary"></span></div>
+              <p class="text-xs text-muted mt-3">Tarifa por noche × noches + servicios extra.</p>
+            </div>
+          </div>
+
+          <div class="card p-6 mt-6 bg-background-soft">
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              <div>
+                <p class="font-semibold text-primary-dark text-sm mb-1">Reserva segura</p>
+                <p class="text-xs text-muted">Tus datos están protegidos con encriptación SSL. Cancelación flexible hasta 48h antes.</p>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+  <div id="appFooter"></div>
+
+  <script src="main.js"></script>
+  <script>
+    function initReserva() {
+      const session = Auth.current();
+      let draft = getDraftReserva() || {};
+
+      // Inicializar fechas
+      const $entrada = document.getElementById('rEntrada');
+      const $salida = document.getElementById('rSalida');
+      $entrada.min = UI.todayISO();
+      $entrada.value = draft.fechaEntrada || UI.addDaysISO(1);
+      $salida.value = draft.fechaSalida || UI.addDaysISO(3);
+      $salida.min = $entrada.value;
+      document.getElementById('rHuespedes').value = draft.huespedes || 2;
+
+      // Si hay sesión, prellenar datos
+      if (session) {
+        document.getElementById('dNombre').value = session.nombre || '';
+        document.getElementById('dEmail').value = session.email || '';
+        document.getElementById('dTelefono').value = session.telefono || '';
+      }
+
+      $entrada.addEventListener('change', () => {
+        $salida.min = $entrada.value;
+        if ($salida.value <= $entrada.value) $salida.value = UI.addDaysISO(new Date($entrada.value).getTime() < new Date(UI.addDaysISO(1)).getTime() ? 1 : 2);
+        updateStep1();
+      });
+      $salida.addEventListener('change', updateStep1);
+      document.getElementById('rHuespedes').addEventListener('change', () => { updateDraft(); updateStep1(); });
+
+      function updateStep1() {
+        const noches = Reservas.calcularNoches($entrada.value, $salida.value);
+        if (noches > 0) {
+          document.getElementById('step1Info').classList.remove('hidden');
+          document.getElementById('step1Noches').textContent = `${noches} ${noches === 1 ? 'noche' : 'noches'}`;
+        }
+        updateDraft();
+      }
+
+      function updateDraft() {
+        draft = {
+          fechaEntrada: $entrada.value,
+          fechaSalida: $salida.value,
+          huespedes: parseInt(document.getElementById('rHuespedes').value),
+          habitacionId: draft.habitacionId,
+          serviciosExtra: draft.serviciosExtra || []
+        };
+        setDraftReserva(draft);
+      }
+
+      // Navegación entre pasos
+      const goToStep = (n) => {
+        document.querySelectorAll('section[id^="step"]').forEach(s => s.classList.add('hidden'));
+        document.getElementById(`step${n}`).classList.remove('hidden');
+        document.querySelectorAll('.wizard-step').forEach(el => {
+          const step = parseInt(el.dataset.step);
+          el.classList.remove('active', 'completed');
+          if (step < n) el.classList.add('completed');
+          if (step === n) el.classList.add('active');
+        });
+        document.querySelectorAll('.wizard-line').forEach((el, i) => {
+          el.classList.toggle('completed', i < n - 1);
+        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      };
+
+      document.getElementById('toStep2').addEventListener('click', () => {
+        if (!$entrada.value || !$salida.value || new Date($salida.value) <= new Date($entrada.value)) {
+          UI.Toast('Verifica las fechas de entrada y salida', 'error'); return;
+        }
+        renderHabitaciones();
+        goToStep(2);
+      });
+
+      document.getElementById('backToStep1').addEventListener('click', () => goToStep(1));
+
+      document.getElementById('toStep3').addEventListener('click', () => {
+        if (!draft.habitacionId) { UI.Toast('Selecciona una habitación', 'error'); return; }
+        renderServiciosExtra();
+        goToStep(3);
+      });
+
+      document.getElementById('backToStep2').addEventListener('click', () => goToStep(2));
+
+      document.getElementById('toStep4').addEventListener('click', () => {
+        renderServiciosExtra();
+        goToStep(4);
+      });
+
+      document.getElementById('backToStep3').addEventListener('click', () => goToStep(3));
+
+      // Render habitaciones paso 2
+      function renderHabitaciones(filtro = 'todas') {
+        const html = HABITACIONES.filter(h => filtro === 'todas' || h.tipo === filtro).map(h => `
+          <label class="card-habitacion flex flex-col sm:flex-row gap-4 p-4 cursor-pointer ${draft.habitacionId === h.id ? 'selected' : ''}">
+            <input type="radio" name="habitacion" value="${h.id}" class="hidden" ${draft.habitacionId === h.id ? 'checked' : ''}/>
+            <img src="${h.imagen}" alt="${h.nombre}" class="w-full sm:w-40 h-32 object-cover rounded-lg"/>
+            <div class="flex-1">
+              <div class="flex items-start justify-between gap-3">
+                <div>
+                  <span class="text-xs uppercase tracking-wider text-muted">${h.tipo === 'privada' ? 'Habitación privada' : 'Dormitorio compartido'}</span>
+                  <h3 class="font-display text-lg font-bold text-primary-dark mt-1">${h.nombre}</h3>
+                </div>
+                <div class="text-right">
+                  <p class="font-display text-xl font-bold text-primary">${UI.formatCurrency(h.precio)}</p>
+                  <p class="text-xs text-muted">/noche</p>
+                </div>
+              </div>
+              <p class="text-sm text-muted mt-2 line-clamp-2">${h.descripcion}</p>
+              <div class="flex items-center gap-3 mt-3 text-xs text-muted">
+                <span class="flex items-center gap-1">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                  Hasta ${h.capacidad} personas
+                </span>
+                <span>· ${h.amenidades.length} amenidades</span>
+              </div>
+            </div>
+          </label>
+        `).join('');
+        document.getElementById('habitacionesReserva').innerHTML = html;
+
+        document.querySelectorAll('.card-habitacion').forEach(card => {
+          card.addEventListener('click', () => {
+            draft.habitacionId = card.querySelector('input').value;
+            setDraftReserva(draft);
+            document.querySelectorAll('.card-habitacion').forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+            renderResumen();
+          });
+        });
+        renderResumen();
+      }
+
+      // Filtros habitaciones
+      document.querySelectorAll('.filtro-hab').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.filtro-hab').forEach(b => {
+            b.classList.remove('btn-primary'); b.classList.add('btn-outline');
+          });
+          btn.classList.remove('btn-outline'); btn.classList.add('btn-primary');
+          renderHabitaciones(btn.dataset.filtro);
+        });
+      });
+
+      // Render servicios extra
+      function renderServiciosExtra() {
+        const draftSrv = draft.serviciosExtra || [];
+        document.getElementById('serviciosExtraReserva').innerHTML = SERVICIOS_EXTRA.map(s => `
+          <label class="card p-4 cursor-pointer flex items-center gap-3 ${draftSrv.includes(s.id) ? 'border-2 border-primary' : ''}">
+            <input type="checkbox" value="${s.id}" class="checkbox-custom" ${draftSrv.includes(s.id) ? 'checked' : ''}/>
+            <div class="flex-1">
+              <div class="flex items-start justify-between">
+                <span class="font-semibold text-primary-dark">${s.nombre}</span>
+                <span class="text-primary font-bold text-sm">${UI.formatCurrency(s.precio)}</span>
+              </div>
+              <p class="text-xs text-muted mt-1">${s.descripcion}</p>
+            </div>
+          </label>
+        `).join('');
+        document.querySelectorAll('#serviciosExtraReserva input[type="checkbox"]').forEach(cb => {
+          cb.addEventListener('change', () => {
+            draft.serviciosExtra = Array.from(document.querySelectorAll('#serviciosExtraReserva input:checked')).map(c => c.value);
+            setDraftReserva(draft);
+            renderResumen();
+          });
+        });
+        renderResumen();
+      }
+
+      // Resumen
+      function renderResumen() {
+        const resumen = document.getElementById('resumenContent');
+        const vacio = document.getElementById('resumenVacio');
+
+        if (!draft.habitacionId || !draft.fechaEntrada || !draft.fechaSalida) {
+          resumen.classList.add('hidden');
+          vacio.classList.remove('hidden');
+          return;
+        }
+
+        const hab = HABITACIONES.find(h => h.id === draft.habitacionId);
+        const noches = Reservas.calcularNoches(draft.fechaEntrada, draft.fechaSalida);
+        const total = Reservas.calcularTotal(draft.habitacionId, draft.fechaEntrada, draft.fechaSalida, draft.serviciosExtra);
+
+        vacio.classList.add('hidden');
+        resumen.classList.remove('hidden');
+        document.getElementById('rsHab').textContent = hab.nombre;
+        document.getElementById('rsEntrada').textContent = UI.formatDateShort(draft.fechaEntrada);
+        document.getElementById('rsSalida').textContent = UI.formatDateShort(draft.fechaSalida);
+        document.getElementById('rsNoches').textContent = `${noches} ${noches === 1 ? 'noche' : 'noches'}`;
+        document.getElementById('rsHuespedes').textContent = draft.huespedes;
+        document.getElementById('rsTotal').textContent = UI.formatCurrency(total);
+
+        const $srvContainer = document.getElementById('rsServiciosContainer');
+        const $srv = document.getElementById('rsServicios');
+        if (draft.serviciosExtra && draft.serviciosExtra.length > 0) {
+          $srvContainer.classList.remove('hidden');
+          $srv.innerHTML = draft.serviciosExtra.map(sid => {
+            const s = SERVICIOS_EXTRA.find(x => x.id === sid);
+            return `<div class="flex justify-between text-xs"><span>• ${s.nombre}</span><span class="font-semibold">${UI.formatCurrency(s.precio)}</span></div>`;
+          }).join('');
+        } else {
+          $srvContainer.classList.add('hidden');
+        }
+      }
+
+      // Confirmar reserva
+      document.getElementById('confirmarReserva').addEventListener('click', () => {
+        const nombre = document.getElementById('dNombre').value.trim();
+        const email = document.getElementById('dEmail').value.trim();
+        const telefono = document.getElementById('dTelefono').value.trim();
+        const documento = document.getElementById('dDocumento').value.trim();
+        const terminos = document.getElementById('dTerminos').checked;
+
+        if (!nombre || !email || !telefono || !documento) {
+          UI.Toast('Completa todos los campos obligatorios', 'error'); return;
+        }
+        if (!terminos) {
+          UI.Toast('Debes aceptar los términos y condiciones', 'error'); return;
+        }
+
+        if (!Auth.current()) {
+          Auth.register({ nombre, email, telefono, password: 'temp_' + Date.now() });
+          UI.Toast('Cuenta creada automáticamente con tu reserva', 'success');
+        } else {
+          Auth.updateProfile({ nombre, telefono });
+        }
+
+        const total = Reservas.calcularTotal(draft.habitacionId, draft.fechaEntrada, draft.fechaSalida, draft.serviciosExtra);
+        const reserva = Reservas.create({
+          userId: Auth.current().id,
+          habitacionId: draft.habitacionId,
+          fechaEntrada: draft.fechaEntrada,
+          fechaSalida: draft.fechaSalida,
+          huespedes: draft.huespedes,
+          serviciosExtra: draft.serviciosExtra,
+          datosHuesped: { nombre, email, telefono, documento, notas: document.getElementById('dNotas').value.trim() },
+          total
+        });
+
+        setDraftPago({ reservaId: reserva.id });
+        clearDraftReserva();
+        window.location.href = 'confirmacion.html?id=' + reserva.id;
+      });
+
+      // Iniciar
+      updateStep1();
+      if (draft.habitacionId) {
+        renderResumen();
+      }
+    }
+  </script>
+</body>
+</html>

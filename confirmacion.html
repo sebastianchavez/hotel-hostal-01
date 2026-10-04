@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reserva confirmada · Hostal Casa del Sol</title>
+  <meta name="description" content="Tu reserva en Casa del Sol ha sido creada con éxito. Procede al pago para confirmarla." />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#8b5e34', 'primary-light': '#c08552', 'primary-dark': '#6b4423',
+            secondary: '#3d5f3d', accent: '#d4a574',
+            'background-light': '#faf6f1', 'background-cream': '#f3ead9', 'background-soft': '#ede0ce',
+            'background-dark': '#2c1f15', muted: '#6b5d4f', border: '#e0d2bd'
+          },
+          fontFamily: { display: ['Playfair Display', 'serif'], sans: ['Inter', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="confirmacion" class="bg-background-light text-gray-800 font-sans">
+
+  <div id="appHeader"></div>
+
+  <main class="py-12">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+
+      <!-- CHECKMARK -->
+      <div class="text-center mb-10 fade-in">
+        <div class="checkmark-circle mx-auto mb-6">
+          <div class="background"></div>
+          <div class="checkmark"></div>
+        </div>
+        <p class="text-primary uppercase tracking-[0.3em] text-xs mb-3 font-semibold">¡Casi listo!</p>
+        <h1 class="text-4xl md:text-5xl font-bold text-primary-dark font-display">Reserva creada con éxito</h1>
+        <p class="text-muted mt-3 max-w-2xl mx-auto">Hemos guardado tu reserva. Para confirmarla definitivamente, completa el pago dentro de las próximas 24 horas.</p>
+      </div>
+
+      <!-- CÓDIGO DE RESERVA -->
+      <div class="card p-8 mb-8 text-center bg-gradient-to-br from-primary/5 to-accent/5">
+        <p class="text-sm text-muted mb-2">Tu código de reserva</p>
+        <p id="codigoReserva" class="font-display text-4xl md:text-5xl font-black text-primary tracking-wider">—</p>
+        <button id="copyCodigo" class="btn-ghost mt-3 text-sm">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          Copiar código
+        </button>
+      </div>
+
+      <!-- DETALLE DE LA RESERVA -->
+      <div id="detalleReserva" class="card p-6 md:p-8 mb-8"></div>
+
+      <!-- PRÓXIMOS PASOS -->
+      <div class="card p-6 md:p-8 mb-8">
+        <h3 class="font-display text-xl font-bold text-primary-dark mb-4">📋 Próximos pasos</h3>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-3">
+            <div class="w-8 h-6 rounded-full bg-secondary text-white flex items-center justify-center flex-shrink-0 font-bold text-sm">1</div>
+            <div>
+              <p class="font-semibold text-primary-dark">Realiza el pago</p>
+              <p class="text-sm text-muted">Tu reserva se confirmará al completar el pago de forma exitosa.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="w-8 h-6 rounded-full bg-secondary text-white flex items-center justify-center flex-shrink-0 font-bold text-sm">2</div>
+            <div>
+              <p class="font-semibold text-primary-dark">Recibe tu confirmación</p>
+              <p class="text-sm text-muted">Te enviaremos un email con todos los detalles y tu código de reserva.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="w-8 h-6 rounded-full bg-secondary text-white flex items-center justify-center flex-shrink-0 font-bold text-sm">3</div>
+            <div>
+              <p class="font-semibold text-primary-dark">Check-in desde las 14:00</p>
+              <p class="text-sm text-muted">Presenta tu documento de identidad y código de reserva en recepción.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- CTAs -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="pago.html" id="btnPagar" class="btn-primary text-base px-8 py-4">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+          Ir a pagar ahora
+        </a>
+        <a href="detalle-reserva.html" id="btnDetalle" class="btn-outline text-base px-8 py-4">Ver detalle</a>
+        <a href="index.html" class="btn-ghost text-base px-6 py-4">Volver al inicio</a>
+      </div>
+
+    </div>
+  </main>
+
+  <div id="appFooter"></div>
+
+  <script src="main.js"></script>
+  <script>
+    function initConfirmacion() {
+      const id = UI.getURLParam('id');
+      const reserva = id ? Reservas.byId(id) : null;
+
+      if (!reserva) {
+        const pago = getDraftPago();
+        if (pago && pago.reservaId) {
+          const r = Reservas.byId(pago.reservaId);
+          if (r) { window.location.href = 'confirmacion.html?id=' + r.id; return; }
+        }
+        document.querySelector('main').innerHTML = `
+          <div class="text-center py-20">
+            <h2 class="text-2xl font-bold text-primary-dark mb-4">No se encontró la reserva</h2>
+            <a href="index.html" class="btn-primary">Volver al inicio</a>
+          </div>
+        `;
+        return;
+      }
+
+      const hab = HABITACIONES.find(h => h.id === reserva.habitacionId);
+      const noches = Reservas.calcularNoches(reserva.fechaEntrada, reserva.fechaSalida);
+
+      document.getElementById('codigoReserva').textContent = reserva.id;
+      document.getElementById('btnPagar').href = `pago.html?id=${reserva.id}`;
+      document.getElementById('btnDetalle').href = `detalle-reserva.html?id=${reserva.id}`;
+
+      document.getElementById('copyCodigo').addEventListener('click', () => {
+        navigator.clipboard.writeText(reserva.id);
+        UI.Toast('Código copiado al portapapeles', 'success');
+      });
+
+      const datosH = reserva.datosHuesped || {};
+      document.getElementById('detalleReserva').innerHTML = `
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <img src="${hab.imagen}" alt="${hab.nombre}" class="w-full h-48 object-cover rounded-lg mb-4"/>
+            <h3 class="font-display text-2xl font-bold text-primary-dark">${hab.nombre}</h3>
+            <p class="text-sm text-muted mt-1">${hab.tipo === 'privada' ? 'Habitación privada' : 'Dormitorio compartido'}</p>
+          </div>
+          <div class="space-y-3 text-sm">
+            <div class="flex justify-between border-b border-soft pb-2">
+              <span class="text-muted">Huésped</span><span class="font-semibold">${datosH.nombre || '—'}</span>
+            </div>
+            <div class="flex justify-between border-b border-soft pb-2">
+              <span class="text-muted">Email</span><span class="font-semibold">${datosH.email || '—'}</span>
+            </div>
+            <div class="flex justify-between border-b border-soft pb-2">
+              <span class="text-muted">Entrada</span><span class="font-semibold">${UI.formatDate(reserva.fechaEntrada)}</span>
+            </div>
+            <div class="flex justify-between border-b border-soft pb-2">
+              <span class="text-muted">Salida</span><span class="font-semibold">${UI.formatDate(reserva.fechaSalida)}</span>
+            </div>
+            <div class="flex justify-between border-b border-soft pb-2">
+              <span class="text-muted">Duración</span><span class="font-semibold">${noches} ${noches === 1 ? 'noche' : 'noches'}</span>
+            </div>
+            <div class="flex justify-between border-b border-soft pb-2">
+              <span class="text-muted">Huéspedes</span><span class="font-semibold">${reserva.huespedes}</span>
+            </div>
+            ${reserva.serviciosExtra && reserva.serviciosExtra.length > 0 ? `
+              <div class="border-b border-soft pb-2">
+                <p class="text-muted mb-1">Servicios extra</p>
+                <ul class="text-xs">
+                  ${reserva.serviciosExtra.map(sid => {
+                    const s = SERVICIOS_EXTRA.find(x => x.id === sid);
+                    return s ? `<li class="flex justify-between"><span>• ${s.nombre}</span><span class="font-semibold">${UI.formatCurrency(s.precio)}</span></li>` : '';
+                  }).join('')}
+                </ul>
+              </div>
+            ` : ''}
+            <div class="flex justify-between text-lg pt-2">
+              <span class="font-display font-bold text-primary-dark">Total</span>
+              <span class="font-display font-bold text-primary">${UI.formatCurrency(reserva.total)}</span>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>
