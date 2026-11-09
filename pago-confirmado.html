@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-CL">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -57,7 +57,7 @@
           </li>
           <li class="flex items-start gap-3">
             <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
-            <div><strong class="text-primary-dark">Ubicación:</strong> Av. Sol 245, Cusco, Perú</div>
+            <div><strong class="text-primary-dark">Ubicación:</strong> Av. Sol 245, Pucón, Chile</div>
           </li>
           <li class="flex items-start gap-3">
             <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0"/></svg>
@@ -130,7 +130,7 @@
           <div>
             <p class="text-xs text-muted uppercase tracking-wider mb-1">Reserva</p>
             <p class="font-semibold">Código: ${reserva.id}</p>
-            <p class="text-sm text-muted">Reservado: ${new Date(reserva.createdAt).toLocaleDateString('es-PE')}</p>
+            <p class="text-sm text-muted">Reservado: ${new Date(reserva.createdAt).toLocaleDateString('es-CL')}</p>
             <p class="text-sm text-muted">Pagado: ${reserva.pago?.fechaPago ? UI.formatDate(reserva.pago.fechaPago) : '—'}</p>
           </div>
         </div>
@@ -158,7 +158,7 @@
               return s ? `<tr class="border-b border-soft"><td class="py-2 text-muted">${s.nombre}</td><td class="py-2 text-right font-semibold">${UI.formatCurrency(s.precio)}</td></tr>` : '';
             }).join('') : ''}
             <tr class="border-b border-soft">
-              <td class="py-2 text-muted">IGV incluido (10%)</td>
+              <td class="py-2 text-muted">IVA incluido (10%)</td>
               <td class="py-2 text-right font-semibold">${UI.formatCurrency(reserva.total * 0.10 / 1.10)}</td>
             </tr>
             <tr>

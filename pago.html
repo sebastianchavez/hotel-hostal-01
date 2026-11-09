@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-CL">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -58,12 +58,12 @@
               <label class="card p-4 cursor-pointer flex items-center gap-3">
                 <input type="radio" name="metodoPago" value="yape" class="checkbox-custom"/>
                 <div class="w-7 h-7 rounded bg-purple-600 text-white flex items-center justify-center text-xs font-bold">Y</div>
-                <span class="font-semibold">Yape</span>
+                <span class="font-semibold">Transferencia</span>
               </label>
               <label class="card p-4 cursor-pointer flex items-center gap-3">
                 <input type="radio" name="metodoPago" value="plin" class="checkbox-custom"/>
                 <div class="w-7 h-7 rounded bg-cyan-600 text-white flex items-center justify-center text-xs font-bold">P</div>
-                <span class="font-semibold">Plin</span>
+                <span class="font-semibold">Depósito</span>
               </label>
               <label class="card p-4 cursor-pointer flex items-center gap-3">
                 <input type="radio" name="metodoPago" value="transferencia" class="checkbox-custom"/>
@@ -105,14 +105,14 @@
             <!-- FORM: YAPE / PLIN -->
             <form id="formYape" class="space-y-4 hidden">
               <div class="bg-purple-50 border-2 border-purple-200 rounded-lg p-5 text-center">
-                <p class="font-semibold text-purple-900 mb-2">Escanea el QR con tu app Yape</p>
+                <p class="font-semibold text-purple-900 mb-2">Escanea el QR con tu app Transferencia</p>
                 <div class="w-48 h-48 mx-auto bg-white rounded-lg flex items-center justify-center border-2 border-purple-300">
                   <svg class="w-32 h-32 text-purple-600" fill="currentColor" viewBox="0 0 100 100"><path d="M10 10h10v10H10zm15 0h5v10h-5zm-5 5h5v5h-5zm15-5h10v10h-10zm20 0h5v10h-5zm-5 5h10v5h-10zm-10 10h5v10h-5zm15 0h10v10h-10zm20 0h5v10h-5z"/></svg>
                 </div>
                 <p class="text-xs text-purple-700 mt-3">Número: <strong>984 555 888</strong></p>
               </div>
               <div>
-                <label class="block text-sm font-semibold text-muted mb-2">Tu nombre (titular Yape) *</label>
+                <label class="block text-sm font-semibold text-muted mb-2">Tu nombre (titular Transferencia) *</label>
                 <input type="text" required placeholder="Tu nombre completo" class="input-field"/>
               </div>
               <div>
@@ -126,7 +126,7 @@
               <div class="bg-secondary/10 border border-secondary/30 rounded-lg p-5 text-sm">
                 <p class="font-semibold text-secondary mb-2">Datos para transferencia</p>
                 <ul class="space-y-1 text-muted">
-                  <li><strong>Banco:</strong> BCP</li>
+                  <li><strong>Banco:</strong> BancoEstado</li>
                   <li><strong>Cuenta Corriente:</strong> 123-45678901-0-12</li>
                   <li><strong>CCI:</strong> 00212312345678901212</li>
                   <li><strong>Titular:</strong> Hostal Casa del Sol S.A.C.</li>
@@ -272,7 +272,7 @@
         $txt.textContent = 'Procesando pago…';
 
         setTimeout(() => {
-          const metodosLabel = { tarjeta: 'Tarjeta de crédito', yape: 'Yape', plin: 'Plin', transferencia: 'Transferencia bancaria' };
+          const metodosLabel = { tarjeta: 'Tarjeta de crédito', yape: 'Transferencia', plin: 'Depósito', transferencia: 'Transferencia bancaria' };
           Reservas.confirmarPago(reserva.id, { metodo: metodosLabel[metodo], referencia: 'TX-' + Date.now().toString().slice(-6) });
           clearDraftPago();
           window.location.href = 'pago-confirmado.html?id=' + reserva.id;

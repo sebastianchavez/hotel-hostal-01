@@ -482,3 +482,6 @@ body {
   .wizard-step .step-label { display: none; }
   .wizard-line { flex: 0 0 30px; }
 }
+/* Allow contact details and headings to fit small phones. */
+body { overflow-wrap: anywhere; }
+.grid > * { min-width: 0; }

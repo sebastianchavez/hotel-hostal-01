@@ -4,11 +4,11 @@
    ===================================================== */
 
 const STORAGE_KEYS = {
-  USERS: 'hs_users',
-  SESSION: 'hs_session',
-  RESERVAS: 'hs_reservas',
-  RESERVA_DRAFT: 'hs_reserva_draft',
-  PAGO_DRAFT: 'hs_pago_draft'
+  USERS: 'hs_users_clp_v1',
+  SESSION: 'hs_session_clp_v1',
+  RESERVAS: 'hs_reservas_clp_v1',
+  RESERVA_DRAFT: 'hs_reserva_draft_clp_v1',
+  PAGO_DRAFT: 'hs_pago_draft_clp_v1'
 };
 
 /* ============== CATALOGO ============== */
@@ -16,68 +16,68 @@ const HABITACIONES = [
   {
     id: 'h-single', tipo: 'privada', nombre: 'Habitación Single',
     descripcion: 'Acogedora habitación individual con cama queen, ideal para viajeros solos que buscan comodidad y descanso.',
-    capacidad: 1, precio: 120,
+    capacidad: 1, precio: 30000,
     imagen: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=900&q=80',
     amenidades: ['Wi-Fi', 'TV', 'Baño privado', 'Aire acondicionado']
   },
   {
     id: 'h-doble', tipo: 'privada', nombre: 'Habitación Doble',
     descripcion: 'Espaciosa habitación con dos camas individuales, perfecta para compartir en familia o con tu pareja de aventura.',
-    capacidad: 2, precio: 180,
+    capacidad: 2, precio: 45000,
     imagen: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?w=900&q=80',
     amenidades: ['Wi-Fi', 'TV', 'Baño privado', 'Aire acondicionado', 'Escritorio']
   },
   {
     id: 'h-twin', tipo: 'privada', nombre: 'Habitación Twin',
     descripcion: 'Habitación clásica con dos camas separadas, ideal para amigos o colegas que viajan juntos.',
-    capacidad: 2, precio: 180,
+    capacidad: 2, precio: 45000,
     imagen: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=900&q=80',
     amenidades: ['Wi-Fi', 'TV', 'Baño privado', 'Aire acondicionado']
   },
   {
     id: 'h-matri', tipo: 'privada', nombre: 'Habitación Matrimonial',
     descripcion: 'Romántica habitación con cama king size, decoración cálida y todas las comodidades para una estadía especial.',
-    capacidad: 2, precio: 210,
+    capacidad: 2, precio: 52500,
     imagen: 'https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=900&q=80',
     amenidades: ['Wi-Fi', 'TV', 'Baño privado', 'Aire acondicionado', 'Balcón']
   },
   {
     id: 'h-family', tipo: 'privada', nombre: 'Habitación Familiar',
     descripcion: 'Amplia habitación para toda la familia, con capacidad hasta 4 personas y zona de estar.',
-    capacidad: 4, precio: 320,
+    capacidad: 4, precio: 80000,
     imagen: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=900&q=80',
     amenidades: ['Wi-Fi', 'TV', 'Baño privado', 'Aire acondicionado', 'Sofá cama', 'Balcón']
   },
   {
     id: 'd-4mix', tipo: 'compartida', nombre: 'Dormitorio 4 Camas (Mixto)',
     descripcion: 'Dormitorio compartido moderno, literas cómodas con cortina, luz individual y locker privado.',
-    capacidad: 4, precio: 60,
+    capacidad: 4, precio: 15000,
     imagen: 'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=900&q=80',
     amenidades: ['Wi-Fi', 'Locker', 'Luz individual', 'Cortina privacidad', 'Baño compartido']
   },
   {
     id: 'd-6fem', tipo: 'compartida', nombre: 'Dormitorio 6 Camas (Femenino)',
     descripcion: 'Dormitorio exclusivo para mujeres, ambiente seguro y cómodo con todas las comodidades.',
-    capacidad: 6, precio: 55,
+    capacidad: 6, precio: 13750,
     imagen: 'https://images.unsplash.com/photo-1631049552057-403cdb8f0658?w=900&q=80',
     amenidades: ['Wi-Fi', 'Locker', 'Luz individual', 'Cortina privacidad', 'Baño compartido']
   },
   {
     id: 'd-8mix', tipo: 'compartida', nombre: 'Dormitorio 8 Camas (Mixto)',
     descripcion: 'Nuestra opción más económica, ideal para mochileros. Espacios amplios y ambiente sociable.',
-    capacidad: 8, precio: 45,
+    capacidad: 8, precio: 11250,
     imagen: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=900&q=80',
     amenidades: ['Wi-Fi', 'Locker', 'Luz individual', 'Baño compartido']
   }
 ];
 
 const SERVICIOS_EXTRA = [
-  { id: 's-desayuno', nombre: 'Desayuno buffet', descripcion: 'Desayuno buffet con productos locales y frescos.', precio: 25, icono: 'coffee' },
-  { id: 's-aeropuerto', nombre: 'Traslado aeropuerto', descripcion: 'Traslado privado desde/hacia el aeropuerto.', precio: 60, icono: 'plane' },
-  { id: 's-lavanderia', nombre: 'Lavandería', descripcion: 'Servicio de lavado y secado por kilogramo.', precio: 15, icono: 'wash' },
-  { id: 's-equipaje', nombre: 'Custodia de equipaje', descripcion: 'Guarda tu equipaje seguro antes o después del check-in.', precio: 10, icono: 'suitcase' },
-  { id: 's-tour', nombre: 'Tour por la ciudad', descripcion: 'Tour grupal por los atractivos turísticos imperdibles.', precio: 80, icono: 'map' },
-  { id: 's-bicicleta', nombre: 'Alquiler de bicicleta', descripcion: 'Bicicletas disponibles para recorrer la ciudad.', precio: 20, icono: 'bike' }
+  { id: 's-desayuno', nombre: 'Desayuno buffet', descripcion: 'Desayuno buffet con productos locales y frescos.', precio: 6250, icono: 'coffee' },
+  { id: 's-aeropuerto', nombre: 'Traslado aeropuerto', descripcion: 'Traslado privado desde/hacia el aeropuerto.', precio: 15000, icono: 'plane' },
+  { id: 's-lavanderia', nombre: 'Lavandería', descripcion: 'Servicio de lavado y secado por kilogramo.', precio: 3750, icono: 'wash' },
+  { id: 's-equipaje', nombre: 'Custodia de equipaje', descripcion: 'Guarda tu equipaje seguro antes o después del check-in.', precio: 2500, icono: 'suitcase' },
+  { id: 's-tour', nombre: 'Tour por la ciudad', descripcion: 'Tour grupal por los atractivos turísticos imperdibles.', precio: 20000, icono: 'map' },
+  { id: 's-bicicleta', nombre: 'Alquiler de bicicleta', descripcion: 'Bicicletas disponibles para recorrer la ciudad.', precio: 5000, icono: 'bike' }
 ];
 
 const HORARIOS = {
@@ -103,11 +103,11 @@ const TESTIMONIOS = [
 
 const FAQ_ITEMS = [
   { q: '¿Cuál es el horario de check-in y check-out?', a: 'El check-in se realiza a partir de las 14:00 y el check-out hasta las 11:00. Si necesitas llegar antes o salir más tarde, consulta por nuestro servicio de custodia de equipaje gratuito.' },
-  { q: '¿Ofrecen traslado desde el aeropuerto?', a: 'Sí, ofrecemos servicio de traslado privado desde y hacia el aeropuerto. Puedes agregarlo al momento de hacer tu reserva por un costo adicional de S/ 60.' },
-  { q: '¿El desayuno está incluido?', a: 'El desayuno buffet tiene un costo adicional de S/ 25 por persona. Sirve todos los días de 07:00 a 10:30 (fines de semana hasta las 11:00) e incluye opciones locales, internacionales, vegetarianas y veganas.' },
+  { q: '¿Ofrecen traslado desde el aeropuerto?', a: 'Sí, ofrecemos servicio de traslado privado desde y hacia el aeropuerto. Puedes agregarlo al momento de hacer tu reserva por un costo adicional de CLP$ 15.000.' },
+  { q: '¿El desayuno está incluido?', a: 'El desayuno buffet tiene un costo adicional de CLP$ 6.250 por persona. Sirve todos los días de 07:00 a 10:30 (fines de semana hasta las 11:00) e incluye opciones locales, internacionales, vegetarianas y veganas.' },
   { q: '¿Tienen espacios comunes para trabajar?', a: 'Sí, contamos con un área de coworking con Wi-Fi de alta velocidad, disponible las 24 horas para todos nuestros huéspedes.' },
   { q: '¿Cuál es la política de cancelación?', a: 'Puedes cancelar sin cargo hasta 48 horas antes de la fecha de entrada. Cancelaciones posteriores tienen un cargo equivalente a la primera noche.' },
-  { q: '¿Aceptan mascotas?', a: 'Sí, somos un hostal pet-friendly. Aceptamos perros y gatos pequeños con un cargo adicional de S/ 30 por mascota.' },
+  { q: '¿Aceptan mascotas?', a: 'Sí, somos un hostal pet-friendly. Aceptamos perros y gatos pequeños con un cargo adicional de CLP$ 7.500 por mascota.' },
   { q: '¿Organizan tours y actividades?', a: 'Ofrecemos tours guiados por la ciudad, caminatas, tours gastronómicos y experiencias culturales. Consulta en recepción o al hacer tu reserva.' }
 ];
 
@@ -133,13 +133,13 @@ const Auth = {
     if (users.length === 0) {
       Storage.set(STORAGE_KEYS.USERS, [
         {
-          id: 'u1', nombre: 'Ana García', email: 'ana@test.com', telefono: '+51 999 111 222',
+          id: 'u1', nombre: 'Ana García', email: 'ana@test.com', telefono: '+56 9 9911 1222',
           password: '123456',
           foto: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=80',
           creado_en: '2025-01-15'
         },
         {
-          id: 'u2', nombre: 'Luis Mendoza', email: 'luis@test.com', telefono: '+51 999 333 444',
+          id: 'u2', nombre: 'Luis Mendoza', email: 'luis@test.com', telefono: '+56 9 9933 3444',
           password: '123456',
           foto: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200&q=80',
           creado_en: '2025-03-22'
@@ -158,7 +158,7 @@ const Auth = {
           id: 'HS-A1B2C3', userId: 'u1', habitacionId: 'h-matri',
           fechaEntrada: fmt(addDays(hoy, -30)), fechaSalida: fmt(addDays(hoy, -27)),
           huespedes: 2, serviciosExtra: ['s-desayuno', 's-tour'],
-          total: 870, estado: 'completada',
+          total: 217500, estado: 'completada',
           pago: { metodo: 'Tarjeta de crédito', referencia: 'TX-998877', fechaPago: fmt(addDays(hoy, -31)) },
           createdAt: addDays(hoy, -32).toISOString()
         },
@@ -166,15 +166,15 @@ const Auth = {
           id: 'HS-D4E5F6', userId: 'u1', habitacionId: 'd-4mix',
           fechaEntrada: fmt(addDays(hoy, 5)), fechaSalida: fmt(addDays(hoy, 8)),
           huespedes: 1, serviciosExtra: [],
-          total: 180, estado: 'confirmada',
-          pago: { metodo: 'Yape', referencia: 'YP-445566', fechaPago: fmt(addDays(hoy, -1)) },
+          total: 45000, estado: 'confirmada',
+          pago: { metodo: 'Transferencia', referencia: 'YP-445566', fechaPago: fmt(addDays(hoy, -1)) },
           createdAt: addDays(hoy, -1).toISOString()
         },
         {
           id: 'HS-G7H8I9', userId: 'u1', habitacionId: 'h-doble',
           fechaEntrada: fmt(addDays(hoy, -10)), fechaSalida: fmt(addDays(hoy, -8)),
           huespedes: 2, serviciosExtra: ['s-desayuno'],
-          total: 410, estado: 'cancelada',
+          total: 102500, estado: 'cancelada',
           pago: null,
           motivoCancelacion: 'Cambio de planes',
           createdAt: addDays(hoy, -15).toISOString()
@@ -358,19 +358,19 @@ const Reservas = {
 /* ============== UI HELPERS ============== */
 const UI = {
   formatCurrency(amount) {
-    return 'S/ ' + Number(amount).toLocaleString('es-PE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    return 'CLP$ ' + Number(amount).toLocaleString('es-CL', { maximumFractionDigits: 0 });
   },
 
   formatDate(dateStr) {
     if (!dateStr) return '';
     const d = new Date(dateStr + 'T00:00:00');
-    return d.toLocaleDateString('es-PE', { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric' });
+    return d.toLocaleDateString('es-CL', { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric' });
   },
 
   formatDateShort(dateStr) {
     if (!dateStr) return '';
     const d = new Date(dateStr + 'T00:00:00');
-    return d.toLocaleDateString('es-PE', { day: '2-digit', month: 'short' });
+    return d.toLocaleDateString('es-CL', { day: '2-digit', month: 'short' });
   },
 
   todayISO() {
@@ -586,15 +586,15 @@ function renderFooter() {
             <ul class="space-y-3 text-sm">
               <li class="flex items-start gap-2">
                 <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                Av. Sol 245, Cusco, Perú
+                Av. Sol 245, Pucón, Chile
               </li>
               <li class="flex items-start gap-2">
                 <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-                +51 84 234 567
+                +56 2 2234 0567
               </li>
               <li class="flex items-start gap-2">
                 <svg class="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                hola@casadelsol.pe
+                hola@casadelsol.cl
               </li>
             </ul>
             <div class="flex gap-3 mt-5">
